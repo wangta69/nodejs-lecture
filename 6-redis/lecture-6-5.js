@@ -1,6 +1,9 @@
 require('dotenv').config();
 const redis = require('redis');
-const event = require('./events');
+const express = require('express')
+const app = express();
+const http = require('http').createServer(app);
+const path = require('path');
 
 const client = redis.createClient(process.env.REDIS_PORT, process.env.REDIS_HOST, {
    return_buffers: false,
@@ -25,11 +28,21 @@ const rSub = redis.createClient(process.env.REDIS_PORT, process.env.REDIS_HOST, 
 rSub.subscribe('pub'); // 추후 이곳에서 모두 처리
 
 rSub.on('message', (channel, message) => {
-    const payload = JSON.parse(message);
-    switch (payload.event) {
-        case 'messages.notice':
-            break;
-    }
-
-    // event.myEmitter.emit('message', JSON.parse(message));
+    console.log(channel, message);
 })
+
+app.use(express.static(path.join(__dirname, '/public')));
+
+// http://localhost:3000/subscribe?message=%EB%84%8C%20%EC%B5%9C%EA%B3%A0%EC%95%BC
+app.route('/subscribe')
+    .get((req, res) => {
+        const mymessage = req.query.message;
+        res.sendFile(path.join(__dirname, '/public/subscribe.html'));
+        if (mymessage) {
+            client.publish('pub', mymessage);
+        }
+    })
+
+http.listen(3000, () => {
+    console.log('listening on *:3000');
+});
