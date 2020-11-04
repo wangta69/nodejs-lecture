@@ -33,7 +33,7 @@ rSub.on('message', (channel, message) => {
 
 app.use(express.static(path.join(__dirname, '/public')));
 
-// http://localhost:3000/subscribe?message=%EB%84%8C%20%EC%B5%9C%EA%B3%A0%EC%95%BC
+// http://localhost:3000/subscribe?message=this is my message
 app.route('/subscribe')
     .get((req, res) => {
         const mymessage = req.query.message;
