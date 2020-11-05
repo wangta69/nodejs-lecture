@@ -25,7 +25,7 @@ const rSub = redis.createClient(process.env.REDIS_PORT, process.env.REDIS_HOST, 
     db: process.env.REDIS_DATABASE
 });
 
-rSub.subscribe('pub'); // 추후 이곳에서 모두 처리
+rSub.subscribe('testpub'); // 추후 이곳에서 모두 처리
 
 rSub.on('message', (channel, message) => {
     console.log(channel, message);
@@ -39,7 +39,7 @@ app.route('/subscribe')
         const mymessage = req.query.message;
         res.sendFile(path.join(__dirname, '/public/subscribe.html'));
         if (mymessage) {
-            client.publish('pub', mymessage);
+            client.publish('testpub', mymessage);
         }
     })
 
