@@ -1,0 +1,22 @@
+doctype html
+html(lang='en')
+  head
+    title List Page
+    link(rel='stylesheet', type='text/css', href='/assets/css/default.css')
+  body
+    div.top-gnb
+      a(href='/') Home |
+      a(href='/users') users
+    div.body
+    a(href='/write') [등록하기]
+    ul.list
+      li
+        span email
+        span name
+        span password
+        span
+
+        li
+          span= row.email
+          span= row.name
+          span= row.password

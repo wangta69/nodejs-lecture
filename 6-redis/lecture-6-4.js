@@ -1,6 +1,6 @@
 require('dotenv').config();
 const redis = require('redis');
-const express = require('express')
+const express = require('express');
 const app = express();
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
@@ -33,7 +33,7 @@ app.route('/chat')
     })
     .post((req, res) => {
         // res.send('Add a book');
-    })
+    });
 
 io.on('connection', (socket) => {
     console.log('a user connected');

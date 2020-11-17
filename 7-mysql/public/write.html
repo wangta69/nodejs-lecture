@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Index Page</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/default.css">
+  </head>
+  <body>
+      <div class="top-gnb">
+          <a href="/">Home</a> | <a href="/users">users</a>
+      </div>
+      <div class="body">
+          <form method="post" action="/write">
+             <table>
+                 <tr>
+                     <td>이메일</td>
+                     <td><input type="text" name="email" value=""></td>
+                </tr>
+                <tr>
+                    <td>이름</td>
+                    <td><input type="text" name="name" value=""></td>
+               </tr>
+               <tr>
+                   <td>패스워드</td>
+                   <td><input type="password" name="password" value=""></td>
+              </tr>
+            </table>
+
+            <button type="submit">저장</button>
+        </form>
+
+      </div>
+  </body>
+</html>
