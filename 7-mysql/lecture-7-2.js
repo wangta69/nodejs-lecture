@@ -91,9 +91,22 @@ app.route('/view/:id')
 app.route('/update/:id')
     .get((req, res) => {
         const id = req.params.id;
+        query('SELECT * FROM users where id = ? ', [id], (err, rows) => {
+            if (err) { console.log(err); }
+            res.render('update', {row: rows[0]});
+        });
     })
     .post((req, res) => {
+        const id = req.params.id;
+        const email = req.body.email;
+        const name = req.body.name;
+        const password = req.body.password;
 
+        console.log(id, email, name, password);
+        query('UPDATE users set email = ?, name = ?, password = ?  where id = ? ', [email, name, password, id], (err) => {
+            if (err) { console.log(err); }
+            res.redirect('/users');
+        });
     });
 app.route('/delete/:id')
     .get((req, res) => {

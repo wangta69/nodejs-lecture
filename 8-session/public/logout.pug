@@ -1,0 +1,20 @@
+doctype html
+html(lang='en')
+  head
+    title Login Page
+    link(rel='stylesheet', type='text/css', href='/assets/css/default.css')
+  body
+    div.top-gnb
+      a(href='/') Home |
+      a(href='/users') users
+    div.body
+    a(href='/write') [등록하기]
+
+
+    form(method="post", action=`/logout` )
+      table
+        tr
+          td 이름
+          td=session.name
+
+      button(type="submit") 로그아웃

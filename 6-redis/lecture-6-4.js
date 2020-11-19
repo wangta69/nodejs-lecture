@@ -41,7 +41,8 @@ io.on('connection', (socket) => {
     client.lrange('chatting.simple', 0, -1, (err, data) => {
         if (err) { console.log(err); }
         console.log('chatting.simple', data);
-        io.emit('messages', data);
+        // io.emit('messages', data);
+        socket.emit('messages', data);
     });
 
     socket.on('disconnect', () => {

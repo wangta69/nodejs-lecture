@@ -1,7 +1,7 @@
 doctype html
 html(lang='en')
   head
-    title List Page
+    title Login Page
     link(rel='stylesheet', type='text/css', href='/assets/css/default.css')
   body
     div.top-gnb
@@ -11,18 +11,15 @@ html(lang='en')
     a(href='/write') [등록하기]
 
 
-    form(method="post", action=`/update/${row.id}` )
+    form(method="post", action=`/login` )
       table
         tr
           td 이메일
           td
-            input(type="text", name="email",  value=row.email)
-        tr
-          td 이름
-          td
-            input(type="text", name="name", value=row.name)
+            input(type="text", name="email",  value="")
         tr
           td 패스워드
           td
-            input(type="password", name="password" value=row.password)
-      button(type="submit") 저장
+            input(type="password", name="password" value="")
+      button(type="submit") 로그인
+    a(href="/logout")
